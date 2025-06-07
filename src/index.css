@@ -4,20 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base styles */
 body {
   font-family: 'Inter', sans-serif;
   @apply antialiased text-gray-800 bg-gray-50;
 }
 
-/* Smooth transitions for interactive elements */
 button, a, .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -35,7 +32,6 @@ button, a, .transition-all {
   @apply bg-gray-500;
 }
 
-/* Animation for skeleton loading */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -49,17 +45,14 @@ button, a, .transition-all {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Custom focus styles */
 button:focus, a:focus, input:focus, select:focus {
   @apply outline-none ring-2 ring-primary ring-opacity-50;
 }
 
-/* For the sticky footer to avoid content overlap */
 main {
   padding-bottom: 120px; /* Adjust based on your footer height */
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   main {
     padding-bottom: 160px; /* More space on mobile */
