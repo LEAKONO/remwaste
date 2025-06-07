@@ -1,12 +1,64 @@
-# React + Vite
+# Skip Hire Booking System
+A fully responsive React application that lets users select skip sizes based on real-time data. The project is a redesign of the "Choose Your Skip Size" page from the WeWantWaste platform.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Postcode-based skip availability search
+- Multiple skip sizes with clear pricing
+- VAT-inclusive price display
+- Flexible hire periods
+- Mobile-responsive interface
+- Real-time availability updates
 
-## Expanding the ESLint configuration
+## Technology Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React 18, Tailwind CSS
+- **State Management**: React Context API
+- **Icons**: React Icons
+- **HTTP Client**: Axios
+- **Build Tool**: Vite
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/LEAKONO/remwaste
+   cd skip-selector
+   ```
+
+## 🚀 Live Demo
+
+👉 [View the Live App](https://your-vercel-link.vercel.app)  
+
+### Install dependencies:
+
+```
+npm install
+```
+Start development server:
+
+```
+npm run dev
+```
+```text
+src/
+├── components/  
+├── contexts/    
+├── pages/      
+├── services/    
+└── App.jsx     
+```
+
+To create a production build:
+
+```
+npm run build
+```
