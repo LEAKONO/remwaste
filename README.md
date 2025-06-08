@@ -36,7 +36,7 @@ A fully responsive React application that lets users select skip sizes based on 
 
 ## 🚀 Live Demo
 
-👉 [View the Live App](https://your-vercel-link.vercel.app)  
+👉 [View the Live App](https://remwaste-psi.vercel.app/)  
 
 ### Install dependencies:
 
