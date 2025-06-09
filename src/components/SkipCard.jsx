@@ -2,9 +2,6 @@ import { FaRuler, FaCalendarAlt, FaCheck, FaRoad } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 export default function SkipCard({ skip, isSelected, onClick }) {
-  // Verify the raw skip data structure
-  console.log('Raw skip data:', JSON.stringify(skip, null, 2));
-
   // Safely extract values with defaults
   const {
     size = 'Unknown',
@@ -15,39 +12,36 @@ export default function SkipCard({ skip, isSelected, onClick }) {
     description = 'General waste skip'
   } = skip;
 
-  // Convert to numbers safely
   const price = typeof rawPrice === 'string' ? parseFloat(rawPrice) : Number(rawPrice);
   const vatRate = typeof rawVat === 'string' ? parseFloat(rawVat) : Number(rawVat);
 
-  // Calculate total price with fallbacks
   const validPrice = !isNaN(price) && isFinite(price) ? price : 0;
   const validVat = !isNaN(vatRate) && isFinite(vatRate) ? vatRate : 0;
   const totalPrice = validPrice + (validPrice * (validVat / 100));
 
-  // Debug output
-  console.log(`Calculated price: £${validPrice} + ${validVat}% VAT = £${totalPrice.toFixed(2)}`);
-
   return (
     <div
-      className={`bg-white rounded-xl shadow-sm overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
-        isSelected
-          ? 'border-blue-500 transform -translate-y-1 shadow-lg'
-          : 'border-transparent hover:shadow-md'
-      }`}
+      className={`bg-white rounded-xl overflow-hidden transition-all duration-200 cursor-pointer 
+        ${isSelected
+          ? 'border-2 border-blue-500 ring-4 ring-blue-200 shadow-xl'
+          : 'border border-gray-200 hover:border-blue-300 shadow-md hover:shadow-lg'
+        }`}
       onClick={onClick}
     >
       <div className="relative">
-        {/* Header with debug info */}
-        <div className="h-40 bg-gradient-to-r from-gray-100 to-gray-200 flex items-center justify-center relative">
-          <div className="absolute top-4 left-4 bg-white rounded-full shadow-md px-3 py-1 flex items-center">
-            <FaRuler className="text-blue-500 mr-1" />
-            <span className="font-medium text-gray-800">{size} Yard</span>
+        {/* Header with size badge */}
+        <div className="h-40 bg-gradient-to-r from-blue-50 to-gray-50 flex items-center justify-center relative">
+          <div className="absolute top-4 left-4 bg-white rounded-full shadow-md px-3 py-1 flex items-center border border-gray-100">
+            <FaRuler className="text-blue-600 mr-1" />
+            <span className="font-semibold text-gray-800">{size} Yard</span>
           </div>
           
-          {/* Debug info - will show if price is being read correctly */}
-          <div className="absolute top-4 right-4 bg-yellow-100 text-yellow-800 text-xs p-1 rounded font-mono">
-            Raw: £{rawPrice} (VAT: {rawVat}%)
-          </div>
+          {/* Price debug info (optional) */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="absolute top-4 right-4 bg-yellow-100 text-yellow-800 text-xs p-1 rounded font-mono">
+              Raw: £{rawPrice} (VAT: {rawVat}%)
+            </div>
+          )}
         </div>
 
         {/* Main content */}
@@ -58,17 +52,17 @@ export default function SkipCard({ skip, isSelected, onClick }) {
           <p className="text-gray-600 mb-4">{description}</p>
 
           <div className="mb-5 space-y-3">
-            <div className="flex items-center">
+            <div className="flex items-center text-gray-700">
               <FaCalendarAlt className="text-blue-500 mr-2" />
               <span>{hirePeriod} day hire period</span>
             </div>
-            <div className="flex items-center">
-              <FaCheck className="text-blue-500 mr-2" />
+            <div className="flex items-center text-gray-700">
+              <FaCheck className="text-green-500 mr-2" />
               <span>Includes delivery & collection</span>
             </div>
             {!allowedOnRoad && (
-              <div className="flex items-center">
-                <FaRoad className="text-red-500 mr-2" />
+              <div className="flex items-center text-gray-700">
+                <FaRoad className="text-orange-500 mr-2" />
                 <span>Requires permit for road use</span>
               </div>
             )}
@@ -83,8 +77,10 @@ export default function SkipCard({ skip, isSelected, onClick }) {
               </p>
             </div>
             <button
-              className={`px-4 py-2 rounded-lg font-medium ${
-                isSelected ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                isSelected 
+                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200 border border-gray-300'
               }`}
             >
               {isSelected ? 'Selected' : 'Select'}
